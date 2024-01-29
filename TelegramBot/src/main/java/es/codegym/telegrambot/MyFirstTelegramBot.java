@@ -5,6 +5,11 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 
+import java.awt.*;
+import java.time.Instant;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+
 public class MyFirstTelegramBot extends MultiSessionTelegramBot {
 
     public static final String NAME = "donGuillobot";//"agregue el nombre del bot entre comillas a continuación";
@@ -17,12 +22,15 @@ public class MyFirstTelegramBot extends MultiSessionTelegramBot {
     @Override
     /*Esta es la respuesta a cada interacción a nuestro BOT*/
     public void onUpdateEventReceived(Update update) {
-        System.out.printf(update.toString());
-        System.out.printf("Hay un mensaje nuevo y es el siguiente %s", update.getMessage().getText());
+
+        //https://howtodoinjava.com/java/date-time/java8-datetimeformatter-example/
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("hh:mm a");
+        String miNombre = getBotUsername();
+        String message = "Hola "+getCurrentClientUserName()+" son las "+LocalTime.now().format(dtf)+", mi nombre es "+miNombre+", gracias por escribir --> "+getMessageText();
+        System.out.println(message);
 
         // TODO: escribiremos la funcionalidad principal del bot aquí
-        sendTextMessageAsync("Hola cómo vas, bienvenido a este nuevo mundo!");
-
+        sendTextMessageAsync(message);
     }
 
     public static void main(String[] args) throws TelegramApiException {

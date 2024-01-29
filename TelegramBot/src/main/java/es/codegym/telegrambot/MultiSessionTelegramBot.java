@@ -58,6 +58,18 @@ public class MultiSessionTelegramBot extends TelegramLongPollingBot {
         return null;
     }
 
+    public String getCurrentClientUserName() {
+        if (updateEvent.get().hasMessage()) {
+            return updateEvent.get().getMessage().getFrom().getFirstName();
+        }
+
+        if (updateEvent.get().hasCallbackQuery()) {
+            return updateEvent.get().getCallbackQuery().getFrom().getFirstName();
+        }
+
+        return null;
+    }
+
     public String getMessageText() {
         return updateEvent.get().hasMessage() ? updateEvent.get().getMessage().getText() : "";
     }
