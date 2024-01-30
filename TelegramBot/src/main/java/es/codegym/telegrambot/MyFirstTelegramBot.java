@@ -30,11 +30,23 @@ public class MyFirstTelegramBot extends MultiSessionTelegramBot {
         //https://howtodoinjava.com/java/date-time/java8-datetimeformatter-example/
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("hh:mm a");
         String miNombre = getBotUsername();
-        String message = "Hola "+getCurrentClientUserName()+" son las "+LocalTime.now().format(dtf)+", mi nombre es "+miNombre+", gracias por escribir --> "+getMessageText();
+        //formateando el string _italic_     *negrita*
+        String message = "Hola _"+getCurrentClientUserName()+"_ son las "+LocalTime.now().format(dtf)+", mi nombre es *"+miNombre+"*, gracias por escribir --> "+getMessageText();
         System.out.println(message);
 
         // TODO: escribiremos la funcionalidad principal del bot aquí
-        sendTextMessageAsync(message);
+        if ( getMessageText().equals("/start") ){
+            sendTextMessageAsync("BIENVENIDO FUTURO PROGRAMADOR "+message);
+        }
+
+        if ( getMessageText().toUpperCase().contains("HOLA") ){
+            sendTextMessageAsync("¿Cuál es tÚ nombre? "+ message);
+        }
+
+        if ( getMessageText().toUpperCase().contains("I NOMBRE ES") ){
+            sendTextMessageAsync("Es un placer yo soy *GATO*");
+        }
+
     }
 
     public static void main(String[] args) throws TelegramApiException {
