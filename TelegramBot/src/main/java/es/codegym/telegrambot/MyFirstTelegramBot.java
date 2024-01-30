@@ -15,6 +15,10 @@ public class MyFirstTelegramBot extends MultiSessionTelegramBot {
     public static final String NAME = "donGuillobot";//"agregue el nombre del bot entre comillas a continuación";
     public static final String TOKEN = "6726864810:AAECRXa97axdSY0i9dJlJsNRiv-dm6yrnzM";//"agregue el token del bot entre comillas a continuación"; -> https://core.telegram.org/bots/api
 
+    //To test over a browser or a request use this https://api.telegram.org/bot<API>/getMe
+    //https://core.telegram.org/bots/api#making-requests
+    //https://core.telegram.org/bots/api#getting-updates
+
     public MyFirstTelegramBot() {
         super(NAME, TOKEN);
     }
